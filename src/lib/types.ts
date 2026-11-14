@@ -36,7 +36,15 @@ export type OrderRecord = {
   total_cents: number;
   status: string;
   created_at: string;
-  events?: { title: string; slug: string; starts_at: string; venue_name: string | null; city: string | null; cover_url: string | null } | null;
+  events?: {
+    title: string;
+    slug: string;
+    starts_at: string;
+    venue_name: string | null;
+    city: string | null;
+    cover_url: string | null;
+    category: string;
+  } | null;
   order_items?: {
     quantity: number;
     unit_price_cents: number;

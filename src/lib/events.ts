@@ -103,7 +103,7 @@ export async function listMyOrders(userId: string): Promise<OrderRecord[]> {
 
   const { data, error } = await supabase
     .from("orders")
-    .select("*, events(title, slug, starts_at, venue_name, city, cover_url), order_items(quantity, unit_price_cents, ticket_types(name))")
+    .select("*, events(title, slug, starts_at, venue_name, city, cover_url, category), order_items(quantity, unit_price_cents, ticket_types(name))")
     .eq("buyer_id", userId)
     .order("created_at", { ascending: false });
 

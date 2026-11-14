@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import EventCover from "@/components/EventCover";
 import TicketPicker from "@/components/TicketPicker";
 import EventCard from "@/components/EventCard";
 import { getEventBySlug, listEvents } from "@/lib/events";
@@ -34,16 +34,12 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
     <div className="pb-10">
       {/* Cover */}
       <div className="relative h-[280px] w-full overflow-hidden sm:h-[360px] lg:h-[420px]">
-        {event.cover_url && (
-          <Image
-            src={event.cover_url}
-            alt={event.title}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-        )}
+        <EventCover
+          src={event.cover_url}
+          seed={event.slug}
+          category={event.category}
+          className="absolute inset-0"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/20" />
       </div>
 

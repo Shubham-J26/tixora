@@ -4,7 +4,9 @@ type Seed = Omit<EventRecord, "id" | "ticket_types" | "status"> & {
   tickets: { name: string; description: string | null; price_cents: number; quantity_total: number; quantity_sold: number }[];
 };
 
-const img = (id: string) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=80`;
+// Covers are generated locally as poster art (see components/CoverArt.tsx) so there is
+// no dependency on external image hosts. Organizers can still paste their own URL.
+const img = (_id: string): string | null => null;
 
 const seeds: Seed[] = [
   {

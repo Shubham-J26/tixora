@@ -1,4 +1,5 @@
 import Link from "next/link";
+import EventCover from "./EventCover";
 import { money, eventDateLong, eventTime } from "@/lib/format";
 
 export type TicketView = {
@@ -12,6 +13,7 @@ export type TicketView = {
     venue_name: string | null;
     city: string | null;
     cover_url: string | null;
+    category?: string;
   };
   items: { name: string; quantity: number; unit_price_cents: number }[];
 };
@@ -42,14 +44,13 @@ export default function TicketCard({ ticket }: { ticket: TicketView }) {
     <article className="group relative overflow-hidden rounded-2xl border border-line bg-ink-2">
       <div className="flex flex-col sm:flex-row">
         <div className="relative min-h-[150px] w-full overflow-hidden bg-ink-3 sm:w-[220px]">
-          {ticket.event.cover_url && (
-            <img
-              src={ticket.event.cover_url}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-90"
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/10 sm:bg-gradient-to-r" />
+          <EventCover
+            src={ticket.event.cover_url}
+            seed={ticket.event.slug || ticket.code}
+            category={ticket.event.category ?? "Community"}
+            className="absolute inset-0"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-black/10 sm:bg-gradient-to-r sm:from-black/75 sm:to-transparent" />
           <div className="absolute bottom-3 left-3 rounded-lg bg-black/60 px-2.5 py-1.5 backdrop-blur">
             <p className="text-[10px] font-bold tracking-widest text-lime uppercase">
               {new Date(ticket.event.starts_at).toLocaleDateString("en-US", { month: "short" })}

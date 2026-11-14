@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import EventCover from "./EventCover";
 import { dateBlock, priceLabel } from "@/lib/format";
 import type { EventRecord } from "@/lib/types";
 
@@ -14,16 +14,13 @@ export default function EventCard({ event, priority = false }: { event: EventRec
       className="group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-ink-2 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:shadow-[0_24px_60px_-24px_rgba(0,0,0,0.9)]"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-ink-3">
-        {event.cover_url && (
-          <Image
-            src={event.cover_url}
-            alt={event.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 33vw"
-            priority={priority}
-            className="object-cover transition duration-500 group-hover:scale-[1.04]"
-          />
-        )}
+        <EventCover
+          src={event.cover_url}
+          seed={event.slug}
+          category={event.category}
+          className="absolute inset-0"
+          imgClassName="transition duration-500 group-hover:scale-[1.04]"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-transparent" />
 
         <div className="absolute top-3 left-3 flex flex-col items-center rounded-xl border border-white/15 bg-black/55 px-2.5 py-1.5 backdrop-blur-md">

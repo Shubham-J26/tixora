@@ -70,6 +70,7 @@ export default async function TicketsPage() {
                   venue_name: order.events?.venue_name ?? null,
                   city: order.events?.city ?? null,
                   cover_url: order.events?.cover_url ?? null,
+                  category: order.events?.category ?? "Community",
                 },
                 items: (order.order_items ?? []).map((i) => ({
                   name: i.ticket_types?.name ?? "Ticket",
